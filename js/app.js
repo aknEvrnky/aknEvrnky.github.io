@@ -155,7 +155,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   errors: false,
   message: '',
   letters: ['QWERTYUIOPĞÜ'.split(''), 'ASDFGHJKLŞİ'.split(''), ['Enter'].concat(_toConsumableArray('ZXCVBNMÖÇ'.split('')), ['Backspace'])],
-  theWord: _wordlist__WEBPACK_IMPORTED_MODULE_1__["default"][Math.floor(Math.random() * _wordlist__WEBPACK_IMPORTED_MODULE_1__["default"].length)].toLocaleUpperCase('tr-TR'),
+  theWord: '',
 
   // theWord: 'ZORRT',
   get currentGuess() {
@@ -175,6 +175,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   init: function init() {
     var _this = this;
 
+    this.theWord = this.getRandomWord();
     this.board = Array.from({
       length: this.guessAllowed
     }, function () {
@@ -184,6 +185,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return new _Tile__WEBPACK_IMPORTED_MODULE_0__["default"](index);
       });
     });
+  },
+  resetGame: function resetGame() {
+    this.init();
+    this.currentRowIndex = 0;
+    this.currentTileIndex = 0;
+    this.state = 'active';
+    this.message = 'game restarted';
+    this.theWord = this.getRandomWord();
+  },
+  getRandomWord: function getRandomWord() {
+    return _wordlist__WEBPACK_IMPORTED_MODULE_1__["default"][Math.floor(Math.random() * _wordlist__WEBPACK_IMPORTED_MODULE_1__["default"].length)].toLocaleUpperCase('tr-TR');
   },
   matchingTileForKey: function matchingTileForKey(key) {
     return this.board.flat().filter(function (tile) {
@@ -265,12 +277,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     if (this.currentGuess === this.theWord) {
       this.state = 'completed';
-      return this.message = 'You Win';
+      return this.message = 'You Win. Click here to restart game.';
     }
 
     if (this.remainingGuesses === 0) {
       this.state = 'completed';
-      return this.message = 'game over. You lose. word:' + this.theWord;
+      return this.message = "game over. You lose. word: ".concat(this.theWord, " Click here to restart game.");
     }
 
     this.currentRowIndex++;
