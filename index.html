@@ -10,10 +10,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/css/app.css?v=2">
+    <link rel="stylesheet" href="/css/app.css?v=3">
 
     <script src="//unpkg.com/alpinejs" defer></script>
-    <script src="/js/app.js?v=2"></script>
+    <script src="/js/app.js?v=3"></script>
     <title>Şevdle</title>
 </head>
 <body>
@@ -23,7 +23,6 @@
 >
 
     <h1 aria-label="Logo" class="title">
-<!--        <img src="/images/trycat-logo.svg" alt="">-->
         ŞEVDLE
     </h1>
 
@@ -43,7 +42,7 @@
         <template x-for="row in letters">
             <div class="row">
                 <template x-for="key in row">
-                    <button class="key" :class="matchingTileForKey(key)?.status" type="button" x-text="key"></button>
+                    <button class="key" :class="matchingTileForKey(key)?.status" type="button" x-text="key === 'Backspace' ? 'sil' : key"></button>
                 </template>
             </div>
         </template>

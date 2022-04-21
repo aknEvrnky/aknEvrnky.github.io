@@ -148,7 +148,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  guessAllowed: 4,
+  guessAllowed: 5,
   currentRowIndex: 0,
   currentTileIndex: 0,
   state: 'active',
